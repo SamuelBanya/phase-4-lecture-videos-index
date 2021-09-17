@@ -5,4 +5,5 @@
 ## Resources
 
 - [Rails Status Codes](http://www.railsstatuscodes.com/)
+- [REST Status Code Guide](https://restfulapi.net/http-status-codes/)
 - [Rails Guides: Using `render`](https://guides.rubyonrails.org/v5.1/layouts_and_rendering.html#using-render)
