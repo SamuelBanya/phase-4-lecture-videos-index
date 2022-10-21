@@ -1,0 +1,75 @@
+* Notes
+I then limited the routes available with the 'only:' symbol with an array of the actions I wanted to limit the routes to within the 'config/routes.rb' file:
+#+begin_src ruby
+Rails.application.routes.draw do
+  resources :crew_members
+  resources :productions, only: [:index, :show]
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Defines the root path route ("/")
+  # root "articles#index"
+end
+#+end_src
+
+I then modified the 'app/controllers/productions_controller.rb' controller file with the following contents:
+#+begin_src ruby
+class ProductionsController < ApplicationController
+    def index
+        productions = Production.all()
+        render json: productions, status: :ok
+    end
+end
+#+end_src
+
+I then tested my changes by starting 'rails s' to start the server, and navigated to the 'http://localhost:3000/productions' URL, and received the following response:
+#+begin_src json
+// 20221021144612
+// http://localhost:3000/productions
+
+[
+  {
+    "id": 5,
+    "title": "Carmen",
+    "genre": "Opera",
+    "budget": 80000,
+    "image": "",
+    "ongoing": null,
+    "created_at": "2022-10-21T19:12:16.698Z",
+    "updated_at": "2022-10-21T19:12:16.698Z",
+    "description": null
+  },
+  {
+    "id": 6,
+    "title": "Cats",
+    "genre": "Musical",
+    "budget": 50000,
+    "image": "",
+    "ongoing": null,
+    "created_at": "2022-10-21T19:12:16.702Z",
+    "updated_at": "2022-10-21T19:12:16.702Z",
+    "description": null
+  },
+  {
+    "id": 7,
+    "title": "Hamilton",
+    "genre": "Musical",
+    "budget": 100000,
+    "image": "",
+    "ongoing": null,
+    "created_at": "2022-10-21T19:12:16.706Z",
+    "updated_at": "2022-10-21T19:12:16.706Z",
+    "description": null
+  },
+  {
+    "id": 8,
+    "title": "Hamlet",
+    "genre": "Shakespearean",
+    "budget": 70000,
+    "image": "",
+    "ongoing": null,
+    "created_at": "2022-10-21T19:12:16.709Z",
+    "updated_at": "2022-10-21T19:12:16.709Z",
+    "description": null
+  }
+]
+#+end_src
